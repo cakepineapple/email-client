@@ -1,12 +1,17 @@
 // INDEX NUMBER :- 200525R
-// Test Comment
-
+// TODO: asdTest Comment
+// TODO: final stuff
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class EmailClient {
 
     public static void main(String[] args) {
-
+        RecipientManager manager = new RecipientManager();
+        ArrayList<String> records = FileHandler.readLines("clientList.txt");
+        for (String record: records) {
+            manager.add(manager.makeNew(record));
+        }
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter option type: \n"
                 + "1 - Adding a new recipient\n"
@@ -15,7 +20,7 @@ public class EmailClient {
                 + "4 - Printing out details of all the emails sent\n"
                 + "5 - Printing out the number of recipient objects in the application");
 
-        int option = Integer.valueOf(scanner.nextLine());
+        int option = Integer.parseInt(scanner.nextLine());
 
         switch(option){
             case 1:
@@ -28,8 +33,7 @@ public class EmailClient {
             case 2: //DONE
                 // input format - email, subject, content
                 String input = scanner.nextLine();
-                String[] data = input.split(", ");
-                SendEmail.send(data[0], data[1], data[2]);
+                SendEmail.send(Email.parse(input));
                 break;
             case 3:
                 // input format - yyyy/MM/dd (ex: 2018/09/17)
@@ -48,6 +52,5 @@ public class EmailClient {
         // start email client
         // code to create objects for each recipient in clientList.txt
         // use necessary variables, methods and classes
-
     }
 }

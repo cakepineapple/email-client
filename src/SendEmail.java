@@ -1,11 +1,15 @@
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDate;
 import java.util.Properties;
 
 public class SendEmail {
 
-    public static void send(String email, String subject, String content) {
+    public static void send(Email mail) {
+        String email = mail.getTo();
+        String subject = mail.getSubject();
+        String content = mail.getContent();
 
         final String username = "rashadCS1040@gmail.com";
         final String password = "dqbibgvvqmezpjii";
@@ -35,6 +39,8 @@ public class SendEmail {
             message.setText(content);
 
             Transport.send(message);
+            mail.setDate(LocalDate.now());
+            // TODO: Serialize the mail object
 
             System.out.println("Message sent!");
 
