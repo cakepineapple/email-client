@@ -6,7 +6,6 @@ public class OfficialRecipient implements Recipient {
         this.name = name;
         this.email = email;
         this.designation = designation;
-        FileHandler.write("clientList.txt", this.toString());
     }
 
     @Override

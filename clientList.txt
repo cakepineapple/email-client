@@ -1,0 +1,8 @@
+Official: Kamal,kamal@mail.com,asdasd
+Official: sunimal,sunimal@mail.com,asd
+Official: namal,namal@mail.com,hora
+Office_friend: rashad,rashad@gmail.com,ceo,2000/8/21
+Office_friend: rashad,rashad@gmail.com,ceo,2000/8/21
+Office_friend: Dashad,rashad@gmail.com,ceo,2000/8/21
+Personal: Kavindu,gayya,kavindu@gmail.com,2001/2/17
+Personal: Udari,Aventadore,udari@gmail.com,2000/5/7

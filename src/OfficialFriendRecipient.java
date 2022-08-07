@@ -11,7 +11,6 @@ public class OfficialFriendRecipient implements Recipient, Wishable {
         this.email = email;
         this.designation = designation;
         this.birthday = birthday;
-        FileHandler.write("clientList.txt", this.toString());
     }
 
     @Override
@@ -22,6 +21,7 @@ public class OfficialFriendRecipient implements Recipient, Wishable {
     @Override
     public String toString() {
         //Office_friend: kamal,kamal@gmail.com,clerk,2000/12/12
-        return String.format("Office_friend: %s,%s,%s,%s", this.name, this.email, this.designation, this.birthday);
+        return String.format("Office_friend: %s,%s,%s,%s/%s/%s", this.name, this.email, this.designation,
+                                                                 this.birthday.getYear(), this.birthday.getMonthValue(), this.birthday.getDayOfMonth());
     }
 }
