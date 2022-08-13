@@ -4,6 +4,7 @@
 // TODO: Serializing stuff
 // TODO: Wishing mechanism
 //TODO: Tidy up the interface
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,27 +14,24 @@ public class EmailClient {
         RecipientManager manager = new RecipientManager();
         ArrayList<String> records = FileHandler.readLines("clientList.txt");
         for (String record: records) {
-            manager.makeNew(record, false);
+            manager.makeNew(record);
         }
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter option type: \n"
-                + "1 - Adding a new recipient\n"
-                + "2 - Sending an email\n"
-                + "3 - Printing out all the recipients who have birthdays\n"
-                + "4 - Printing out details of all the emails sent\n"
-                + "5 - Printing out the number of recipient objects in the application");
+        System.out.println("""
+                Enter option type:\s
+                1 - Adding a new recipient
+                2 - Sending an email
+                3 - Printing out all the recipients who have birthdays
+                4 - Printing out details of all the emails sent
+                5 - Printing out the number of recipient objects in the application""");
 
         int option = Integer.parseInt(scanner.nextLine());
 
-        switch(option){
-            case 1: // DONE, BUT HAVE TO DEBUG
-                // input format - Official: nimal,nimal@gmail.com,ceo
-                // Use a single input to get all the details of a recipient
-                // code to add a new recipient
-                // store details in clientList.txt file
-                // Hint: use methods for reading and writing files
+        switch (option) {
+            case 1:
                 String input1 = scanner.nextLine();
-                manager.makeNew(input1, true);
+                Recipient recipient = manager.makeNew(input1);
+                FileHandler.appendLine("clientList.txt", recipient + "\n");
                 System.out.println("Recipient added successfully");
                 break;
             case 2: //DONE
@@ -48,9 +46,21 @@ public class EmailClient {
             case 4:
                 // input format - yyyy/MM/dd (ex: 2018/09/17)
                 // code to print the details of all the emails sent on the input date
+                String input4 = scanner.nextLine();
+                LocalDate date = manager.parseDay(input4);
+                ArrayList<Email> emails = ObjectHandler.emailsOnDate(date);
+                for (Email email: emails) {
+                    System.out.println();
+                    System.out.println(email);
+                    System.out.println();
+                }
+                if (emails.isEmpty()) {
+                    System.out.println("No emails were sent on the input date!");
+                }
                 break;
             case 5:
                 // code to print the number of recipient objects in the application
+                System.out.println("Total recipients: " + manager.getCount());
                 break;
 
         }

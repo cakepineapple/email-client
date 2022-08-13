@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.util.Properties;
 
 public class SendEmail {
-
     public static void send(Email mail) {
         String email = mail.getTo();
         String subject = mail.getSubject();
@@ -41,6 +40,7 @@ public class SendEmail {
             Transport.send(message);
             mail.setDate(LocalDate.now());
             // TODO: Serialize the mail object
+            ObjectHandler.serializeEmail(mail);
 
             System.out.println("Message sent!");
 

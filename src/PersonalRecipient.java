@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class PersonalRecipient implements Recipient, Wishable {
     private final String name;
@@ -15,13 +16,22 @@ public class PersonalRecipient implements Recipient, Wishable {
 
     @Override
     public void wish() {
-        SendEmail.send(new Email(this.email, "Happy Birthday", "hugs and love on your birthday.\nRashad"));
+        SendEmail.send(new Email(this.email, "Happy Birthday!", "hugs and love on your birthday.\nRashad"));
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
+    public LocalDate getBirthday() {
+        return birthday;
     }
 
     @Override
     public String toString() {
+        String birthdayAsString = String.format("%s/%s/%s", this.birthday.getYear(), this.birthday.getMonthValue(), this.birthday.getDayOfMonth());
         //Personal: sunil,<nick-name>,sunil@gmail.com,2000/10/10
-        return String.format("Personal: %s,%s,%s,%s/%s/%s", this.name, this.nickname, this.email,
-                                                            this.birthday.getYear(), this.birthday.getMonthValue(), this.birthday.getDayOfMonth());
+        return String.format("Personal: %s,%s,%s,%s", this.name, this.nickname, this.email, birthdayAsString);
     }
 }

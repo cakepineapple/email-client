@@ -30,6 +30,18 @@ public class Email implements Serializable {
         this.date = date;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String toString() {
+        return
+        "Date: " + this.date + "\n" +
+        "Recipient: " + this.to + "\n" +
+        "Subject: " + this.subject + "\n" +
+        "Body: " + this.content + "\n";
+    }
+
 
     public static Email parse(String input) {
         // Input format: email, subject, content

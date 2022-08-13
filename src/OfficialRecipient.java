@@ -8,6 +8,7 @@ public class OfficialRecipient implements Recipient {
         this.designation = designation;
     }
 
+
     @Override
     public String toString() {
         //Official: nimal,nimal@gmail.com,ceo
